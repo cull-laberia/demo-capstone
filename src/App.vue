@@ -1,29 +1,74 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-content>
+      <v-container fluid>
+        <v-row>
+          <!-- <v-col cols="1" /> -->
+          <v-col class="box" cols="7">
+            <v-col class="inside-desktop" cols="12">
+              <Desktop />
+            </v-col>
+          </v-col>
+          <v-col cols="1"></v-col>
+          <v-col class="box" cols="3">
+            <v-col class="inside-mobile" cols="12">
+              <Mobile/>
+            </v-col>
+          </v-col>
+          <v-col cols="1"></v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Desktop from "./components/Desktop";
+import Mobile from "./components/Mobile";
+
+export default {
+  name: "App",
+  components: {
+    Desktop,
+    Mobile
+  },
+  data: () => ({
+    //
+  })
+};
+</script>
+
+<style scoped>
+.box {
+  height: 95vh;
+  border: 2px solid;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  /* // &.inside-mobile {
+  //   &.inside-mobile-2 {
+  //     width: 30%;
+
+  //     @for $i from 1 to 12 {
+  //       .col-sm-#{$i} {
+  //         width: 100%;
+  //       }
+  //     }
+  //   }
+  // } */
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+
+.box .inside-mobile {
+  height: 95%;
+  overflow-y: scroll;
+  border: 2px solid;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.box .inside-desktop {
+  height: 93%;
+  overflow-y: scroll;
+  border: 2px solid;
+  margin-top: 7%;
 }
 </style>
